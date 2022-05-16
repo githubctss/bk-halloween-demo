@@ -1,18 +1,29 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
+import * as http from 'http';
 import * as express from 'express';
+import { Server } from 'socket.io';
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  path: '/device/socket.io/',
+  cors: {
+    origin: '*',
+    allowedHeaders: ['my-custom-header'],
+  },
+});
+const port = process.env.port || 3333;
 
 app.get('/api', (req, res) => {
-  res.send({ message: 'Welcome to api!' });
+  res.sendStatus(200);
 });
 
-const port = process.env.port || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
+io.on('connection', (socket) => {
+  socket.on('DEVICE_JOIN', (data) => {
+    console.log('>>> Data recieved')
+    io.emit('DEVICE_SENSOR_INFO', data);
+  })
 });
-server.on('error', console.error);
+
+server.listen(port, () => {
+  console.log(`Listening at http://localhost:${port}`);
+});
