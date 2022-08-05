@@ -10,6 +10,7 @@
     "react-native-config": "*",
     "react-native-svg": "*",
     "@react-native-async-storage/async-storage": "*",
-    "react-native-sensors": "*"
+    "react-native-sensors": "*",
+    "react-native-webview": "*"
   }
 }

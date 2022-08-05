@@ -1,86 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
-
-interface CoordinateSensorData {
-  x: number; 
-  y: number; 
-  z: number; 
-  timestamp: number;
-}
-
-interface BarometerSensorData {
-  pressure: number;
-  timestamp: number;
-}
-
-interface SensorData {
-  gyroscope: CoordinateSensorData;
-  accelerometer: CoordinateSensorData;
-  magnetometer: CoordinateSensorData;
-  barometer: BarometerSensorData;
-}
+import React from 'react';
+import { useSensorData } from '@appWeb/hooks/useSensorData';
 
 export function Index() {
-  const [data, setData] = useState<SensorData | null>(null);
-
-  useEffect(() => {
-    const socket = io('http://172.20.10.7:3333', {
-      path: '/device/socket.io/',
-      extraHeaders: {
-        'my-custom-header': 'abcd',
-      },
-    });
-
-    socket.on('DEVICE_SENSOR_INFO', (data) => {
-      setData(data)
-    });
-
-    return () => {
-      socket.off('DEVICE_SENSOR_INFO');
-    }
-  }, []);
+  const sensorData = useSensorData();
 
   return (
     <>
       <div>
         <h1>Gyroscope Data</h1>
-        {data?.gyroscope && (
+        {!!sensorData?.gyroscope && (
           <>
-            <div>X: { data.gyroscope.x }</div>
-            <div>Y: { data.gyroscope.y }</div>
-            <div>Z: { data.gyroscope.z }</div>
-            <div>Timestamp: { data.gyroscope.timestamp }</div>
+            <div>X: { sensorData.gyroscope.x }</div>
+            <div>Y: { sensorData.gyroscope.y }</div>
+            <div>Z: { sensorData.gyroscope.z }</div>
+            <div>Timestamp: { sensorData.gyroscope.timestamp }</div>
           </>
         )}
       </div>
       <div>
         <h1>Accelerometer Data</h1>
-        {data?.accelerometer && (
+        {!!sensorData?.accelerometer && (
           <>
-            <div>X: { data.accelerometer.x }</div>
-            <div>Y: { data.accelerometer.y }</div>
-            <div>Z: { data.accelerometer.z }</div>
-            <div>Timestamp: { data.accelerometer.timestamp }</div>
+            <div>X: { sensorData.accelerometer.x }</div>
+            <div>Y: { sensorData.accelerometer.y }</div>
+            <div>Z: { sensorData.accelerometer.z }</div>
+            <div>Timestamp: { sensorData.accelerometer.timestamp }</div>
           </>
         )}
       </div>
       <div>
         <h1>Magnetometer Data</h1>
-        {data?.magnetometer && (
+        {!!sensorData?.magnetometer && (
           <>
-            <div>X: { data.magnetometer.x }</div>
-            <div>Y: { data.magnetometer.y }</div>
-            <div>Z: { data.magnetometer.z }</div>
-            <div>Timestamp: { data.magnetometer.timestamp }</div>
-          </>
-        )}
-      </div>
-      <div>
-        <h1>Barometer Data</h1>
-        {data?.barometer && (
-          <>
-            <div>Pressure: { data.barometer.pressure }</div>
-            <div>Timestamp: { data.barometer.timestamp }</div>
+            <div>X: { sensorData.magnetometer.x }</div>
+            <div>Y: { sensorData.magnetometer.y }</div>
+            <div>Z: { sensorData.magnetometer.z }</div>
+            <div>Timestamp: { sensorData.magnetometer.timestamp }</div>
           </>
         )}
       </div>

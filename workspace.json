@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "entities": "libs/entities",
     "mobile": "apps/mobile",
     "mobile-e2e": "apps/mobile-e2e",
     "web": "apps/web",

@@ -181,7 +181,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh /Users/colinasadourian/Documents/node_apps/uu-ghost-buster-demo/apps/mobile/src/main.tsx\n";
+			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh /Users/colinasadourian/Documents/node_apps/bk-halloween/apps/mobile/src/main.tsx\n";
 		};
 		589CD817700AC23390FB1CF7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
