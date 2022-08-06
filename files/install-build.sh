@@ -7,4 +7,4 @@ rm -rf dist
 yarn install
 yarn nx reset
 yarn web:build
-pm2 reload ecosystem.config.js
+./node_modules/.bin/next start ./dist/apps/dashboard -p 3005
