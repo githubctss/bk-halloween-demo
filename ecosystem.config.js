@@ -14,7 +14,7 @@ module.exports = {
   deploy : {
     production : {
       user : 'admin',
-      host : 'ec2-54-183-78-200.us-west-1.compute.amazonaws.com',
+      host : 'ec2-52-53-176-156.us-west-1.compute.amazonaws.com',
       key  : 'files/ec2-bk-halloween.pem',
       ref  : 'origin/main',
       repo : 'https://github.com/githubctss/bk-halloween-demo.git',
@@ -25,7 +25,7 @@ module.exports = {
     },
     prodbuild : {
       user : 'admin',
-      host : 'ec2-54-183-78-200.us-west-1.compute.amazonaws.com',
+      host : 'ec2-52-53-176-156.us-west-1.compute.amazonaws.com',
       key  : 'files/ec2-bk-halloween.pem',
       ref  : 'origin/main',
       repo : 'https://github.com/githubctss/bk-halloween-demo.git',
